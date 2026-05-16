@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xpanse Kids — Atividades Educativas para Crianças</title>
+  <meta name="description" content="Kits de atividades educativas para imprimir em casa. Coordenação motora, caça-palavras, alfabetização e muito mais. Feito com carinho para crianças de 3 a 10 anos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sun: #FFD43B;
+      --sun-dark: #F59F00;
+      --coral: #FF6B6B;
+      --coral-dark: #E03131;
+      --sky: #4DABF7;
+      --sky-dark: #1971C2;
+      --mint: #63E6BE;
+      --mint-dark: #0CA678;
+      --lavender: #CC5DE8;
+      --ink: #1A1A2E;
+      --ink-soft: #2D2D44;
+      --cream: #FFFBF0;
+      --white: #FFFFFF;
+      --gray-light: #F8F9FA;
+      --text-muted: #6B7280;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 8px 32px rgba(26,26,46,0.10);
+      --shadow-hover: 0 16px 48px rgba(26,26,46,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo { font-family: 'Baloo 2', cursive; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 68px;
+      background: rgba(255,251,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1.5px solid rgba(255,212,59,0.3);
+    }
+
+    .logo {
+      font-size: 1.6rem; font-weight: 800; color: var(--ink);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
+    .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--coral); display: inline-block; }
+    .logo span { color: var(--coral); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--ink-soft); font-weight: 600; font-size: 0.95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--coral); }
+
+    .nav-cta {
+      background: var(--coral); color: var(--white);
+      padding: 10px 22px; border-radius: 50px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.4);
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,107,107,0.5); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: all .3s; display: block; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      padding: 120px 5% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18; pointer-events: none;
+    }
+    .blob1 { width: 500px; height: 500px; background: var(--sun); top: -100px; right: -100px; }
+    .blob2 { width: 400px; height: 400px; background: var(--coral); bottom: -80px; left: -80px; }
+    .blob3 { width: 300px; height: 300px; background: var(--sky); top: 40%; left: 40%; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--sun); color: var(--ink); padding: 6px 16px;
+      border-radius: 50px; font-weight: 700; font-size: 0.82rem;
+      margin-bottom: 1.5rem; letter-spacing: 0.03em;
+      animation: fadeSlideUp .6s ease both;
+    }
+    .hero-badge::before { content: '✨'; font-size: 14px; }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.1;
+      color: var(--ink);
+      animation: fadeSlideUp .7s ease both;
+    }
+    .hero-title .accent { color: var(--coral); position: relative; }
+    .hero-title .accent::after {
+      content: '';
+      position: absolute; bottom: 2px; left: 0; right: 0; height: 6px;
+      background: var(--sun); border-radius: 4px; z-index: -1; opacity: 0.7;
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem; font-size: 1.15rem; color: var(--text-muted);
+      line-height: 1.7; max-width: 480px;
+      animation: fadeSlideUp .8s ease both;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 1.8rem;
+      animation: fadeSlideUp .9s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Baloo 2', cursive; font-size: 1.8rem; font-weight: 800; color: var(--ink); line-height: 1; }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+
+    .hero-actions {
+      display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
+      animation: fadeSlideUp 1s ease both;
+    }
+
+    .btn-primary {
+      background: var(--coral); color: var(--white);
+      padding: 14px 32px; border-radius: 50px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 6px 20px rgba(255,107,107,0.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(255,107,107,0.55); }
+
+    .btn-secondary {
+      background: transparent; color: var(--ink);
+      padding: 14px 28px; border-radius: 50px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid var(--ink);
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .btn-secondary:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative; display: flex; justify-content: center; align-items: center;
+      animation: fadeSlideUp .8s ease both;
+    }
+
+    .hero-mockup {
+      width: 100%; max-width: 420px;
+      background: var(--white); border-radius: 28px;
+      padding: 28px; box-shadow: var(--shadow-hover);
+      position: relative; z-index: 2;
+    }
+
+    .mockup-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+    }
+    .mockup-dots { display: flex; gap: 6px; }
+    .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: var(--coral); }
+    .dot-y { background: var(--sun); }
+    .dot-g { background: var(--mint); }
+
+    .mockup-title { font-family: 'Baloo 2', cursive; font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
+
+    .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .mockup-card {
+      border-radius: 16px; padding: 16px 14px; cursor: pointer;
+      transition: transform .2s;
+    }
+    .mockup-card:hover { transform: scale(1.03); }
+    .mc1 { background: #FFF3CD; }
+    .mc2 { background: #D3F9D8; }
+    .mc3 { background: #D0EBFF; }
+    .mc4 { background: #F8D7DA; }
+
+    .mockup-card-icon { font-size: 2rem; margin-bottom: 8px; }
+    .mockup-card-name { font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.85rem; color: var(--ink); line-height: 1.2; }
+    .mockup-card-price { font-size: 0.78rem; font-weight: 700; color: var(--coral); margin-top: 4px; }
+
+    .hero-float {
+      position: absolute; border-radius: 16px; padding: 12px 18px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.85rem;
+      box-shadow: var(--shadow); z-index: 3;
+      animation: float 3s ease-in-out infinite;
+    }
+    .float1 { background: var(--sun); color: var(--ink); top: -20px; right: -20px; font-size: 0.78rem; }
+    .float2 { background: var(--mint); color: var(--ink); bottom: 40px; left: -30px; font-size: 0.78rem; }
+    .float3 { background: var(--lavender); color: var(--white); bottom: -15px; right: 20px; font-size: 0.78rem; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--ink); color: var(--white);
+      padding: 18px 5%; overflow: hidden;
+    }
+    .trust-track {
+      display: flex; gap: 3rem; align-items: center;
+      animation: scrollTrack 20s linear infinite;
+      width: max-content;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Baloo 2', cursive; font-weight: 600; font-size: 0.95rem;
+      white-space: nowrap; opacity: 0.85;
+    }
+    .trust-item span { color: var(--sun); }
+
+    @keyframes scrollTrack {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 100px 5%; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--coral); margin-bottom: 12px;
+    }
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--coral); border-radius: 2px; }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800;
+      line-height: 1.2; color: var(--ink); margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 540px; line-height: 1.7; }
+
+    /* ── PRODUCTS ── */
+    #produtos { background: var(--white); }
+
+    .products-header { text-align: center; margin-bottom: 4rem; }
+    .products-header .section-label, .products-header .section-sub { display: block; margin: 0 auto; }
+    .products-header .section-label { justify-content: center; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--white);
+      border: 2px solid transparent;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      position: relative;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--sun);
+    }
+
+    .product-card-img {
+      height: 180px; display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative; overflow: hidden;
+    }
+    .pc-bg1 { background: linear-gradient(135deg, #FFF3CD 0%, #FFE066 100%); }
+    .pc-bg2 { background: linear-gradient(135deg, #D0EBFF 0%, #74C0FC 100%); }
+    .pc-bg3 { background: linear-gradient(135deg, #D3F9D8 0%, #8CE99A 100%); }
+    .pc-bg4 { background: linear-gradient(135deg, #F8D7DA 0%, #FFA8A8 100%); }
+
+    .product-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--coral); color: var(--white);
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.75rem;
+      padding: 4px 12px; border-radius: 50px;
+    }
+    .badge-new { background: var(--mint-dark); }
+    .badge-hot { background: var(--coral); }
+
+    .product-body { padding: 24px; }
+    .product-name { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .product-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+    .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .product-tag {
+      background: var(--gray-light); color: var(--ink-soft);
+      font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
+    }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; color: var(--ink); }
+    .product-price small { font-size: 0.75rem; color: var(--text-muted); font-family: 'Nunito', sans-serif; font-weight: 600; display: block; line-height: 1; }
+
+    .btn-buy {
+      background: var(--coral); color: var(--white);
+      border: none; border-radius: 50px; padding: 10px 20px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+    }
+    .btn-buy:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,107,0.5); }
+
+    /* Bundle */
+    .bundle-banner {
+      margin-top: 48px;
+      background: var(--ink);
+      border-radius: var(--radius);
+      padding: 40px 48px;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .bundle-text .eyebrow { color: var(--sun); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+    .bundle-text h3 { font-family: 'Baloo 2', cursive; font-size: 1.8rem; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 8px; }
+    .bundle-text p { color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+    .bundle-price { text-align: center; }
+    .bundle-old { font-size: 1rem; color: rgba(255,255,255,0.45); text-decoration: line-through; margin-bottom: 4px; }
+    .bundle-new { font-family: 'Baloo 2', cursive; font-size: 2.4rem; font-weight: 800; color: var(--sun); line-height: 1; margin-bottom: 12px; }
+    .btn-bundle {
+      background: var(--sun); color: var(--ink);
+      border: none; border-radius: 50px; padding: 14px 32px;
+      font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1rem;
+      cursor: pointer; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 20px rgba(255,212,59,0.45);
+      text-decoration: none; display: inline-block;
+    }
+    .btn-bundle:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,212,59,0.6); }
+
+    /* ── HOW IT WORKS ── */
+    #como-funciona { background: var(--cream); }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 4rem;
+    }
+
+    .how-step {
+      text-align: center; position: relative;
+    }
+    .how-step:not(:last-child)::after {
+      content: '→';
+      position: absolute; right: -1rem; top: 28px;
+      font-size: 1.5rem; color: var(--sun-dark); font-weight: 700;
+    }
+
+    .how-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 1rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .hi1 { background: #FFF3CD; }
+    .hi2 { background: #D0EBFF; }
+    .hi3 { background: #D3F9D8; }
+    .hi4 { background: #F8D7DA; }
+
+    .how-step h3 { font-family: 'Baloo 2', cursive; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+    .how-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── BENEFITS ── */
+    #beneficios { background: var(--white); }
+
+    .benefits-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+    .benefits-visual {
+      background: var(--cream); border-radius: 28px; padding: 40px;
+      position: relative; overflow: hidden;
+    }
+
+    .bv-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .bv-card {
+      border-radius: 16px; padding: 20px 16px; text-align: center;
+    }
+    .bv1 { background: #FFF3CD; }
+    .bv2 { background: #D0EBFF; }
+    .bv3 { background: #D3F9D8; }
+    .bv4 { background: #F8D7DA; }
+    .bv-card-icon { font-size: 2rem; margin-bottom: 8px; }
+    .bv-card-label { font-family: 'Baloo 2', cursive; font-size: 0.88rem; font-weight: 700; color: var(--ink); }
+
+    .benefits-list { list-style: none; margin-top: 2rem; }
+    .benefits-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .benefits-list li:last-child { border-bottom: none; }
+    .check-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--mint); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; font-size: 0.85rem;
+    }
+    .benefits-list h4 { font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; margin-bottom: 2px; color: var(--ink); }
+    .benefits-list p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── TESTIMONIALS ── */
+    #depoimentos { background: var(--cream); }
+
+    .testimonials-header { text-align: center; margin-bottom: 3rem; }
+    .testimonials-header .section-label { justify-content: center; }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px; box-shadow: var(--shadow);
+      transition: transform .2s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+
+    .stars { color: var(--sun-dark); font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.1rem; color: var(--white);
+      flex-shrink: 0;
+    }
+    .av1 { background: var(--coral); }
+    .av2 { background: var(--sky); }
+    .av3 { background: var(--lavender); }
+    .av4 { background: var(--mint-dark); }
+
+    .author-name { font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+    .author-role { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── FAQ ── */
+    #faq { background: var(--white); }
+    .faq-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+
+    .faq-list { margin-top: 0; }
+    .faq-item {
+      border-bottom: 1.5px solid rgba(0,0,0,0.07);
+      padding: 20px 0;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; gap: 1rem;
+    }
+    .faq-question h4 { font-family: 'Baloo 2', cursive; font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+    .faq-toggle {
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700; flex-shrink: 0; transition: all .2s;
+      color: var(--ink);
+    }
+    .faq-item.open .faq-toggle { background: var(--coral); border-color: var(--coral); color: var(--white); transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .faq-answer p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; padding: 14px 0 0; }
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    /* ── CTA FINAL ── */
+    #cta {
+      background: var(--ink); color: var(--white); text-align: center;
+      padding: 120px 5%;
+      position: relative; overflow: hidden;
+    }
+    #cta .blob1 { opacity: 0.12; }
+    #cta .blob2 { opacity: 0.08; }
+
+    .cta-inner { position: relative; z-index: 2; }
+    .cta-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,212,59,0.15); border: 1px solid rgba(255,212,59,0.4);
+      color: var(--sun); padding: 6px 18px; border-radius: 50px;
+      font-weight: 700; font-size: 0.82rem; margin-bottom: 1.5rem;
+    }
+    #cta .section-title { color: var(--white); margin: 0 auto 1rem; max-width: 600px; }
+    #cta .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 2.5rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-cta-primary {
+      background: var(--sun); color: var(--ink);
+      padding: 16px 36px; border-radius: 50px;
+      font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 1.1rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 6px 24px rgba(255,212,59,0.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(255,212,59,0.6); }
+
+    .btn-cta-secondary {
+      background: transparent; color: var(--white);
+      padding: 16px 32px; border-radius: 50px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 1.05rem;
+      text-decoration: none; border: 2px solid rgba(255,255,255,0.3);
+      transition: border-color .2s, background .2s;
+    }
+    .btn-cta-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink-soft); color: rgba(255,255,255,0.6);
+      padding: 48px 5%;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--coral); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.88rem; font-weight: 600; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.82rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; text-align: center; gap: 3rem; padding-top: 100px; }
+      .hero-stats { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-sub { margin: 1rem auto 0; }
+      .hero-visual { display: none; }
+      .benefits-layout { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .how-step:not(:last-child)::after { display: none; }
+      .bundle-banner { text-align: center; justify-content: center; }
+      .bundle-price { width: 100%; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 68px; left: 0; right: 0;
+        background: var(--cream); padding: 2rem 5%;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        gap: 1.2rem;
+      }
+      section { padding: 70px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="logo">Xpanse<span>Kids</span><span class="logo-dot"></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#beneficios">Benefícios</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#produtos" class="nav-cta">Ver Kits →</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-blob blob1"></div>
+    <div class="hero-bg-blob blob2"></div>
+    <div class="hero-bg-blob blob3"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Novidade — Kits prontos para imprimir</div>
+      <h1 class="hero-title">
+        Aprender<br>
+        brincando é<br>
+        <span class="accent">muito mais</span><br>
+        divertido ✨
+      </h1>
+      <p class="hero-sub">
+        Atividades educativas para imprimir em casa, criadas para desenvolver as habilidades das crianças de 3 a 10 anos de forma lúdica e alinhada à BNCC.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">+500</div><div class="stat-label">Famílias atendidas</div></div>
+        <div class="stat"><div class="stat-num">8</div><div class="stat-label">Kits disponíveis</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Digital & Imediato</div></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#produtos" class="btn-primary">Ver todos os kits →</a>
+        <a href="#como-funciona" class="btn-secondary">Como funciona?</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          <div class="mockup-title">Xpanse Kids — Kits</div>
+        </div>
+        <div class="mockup-grid">
+          <div class="mockup-card mc1">
+            <div class="mockup-card-icon">✏️</div>
+            <div class="mockup-card-name">Coord. Motora</div>
+            <div class="mockup-card-price">R$ 19,90</div>
+          </div>
+          <div class="mockup-card mc2">
+            <div class="mockup-card-icon">🔍</div>
+            <div class="mockup-card-name">Caça-Palavras</div>
+            <div class="mockup-card-price">R$ 17,90</div>
+          </div>
+          <div class="mockup-card mc3">
+            <div class="mockup-card-icon">🔤</div>
+            <div class="mockup-card-name">Alfabetização</div>
+            <div class="mockup-card-price">R$ 19,90</div>
+          </div>
+          <div class="mockup-card mc4">
+            <div class="mockup-card-icon">🎉</div>
+            <div class="mockup-card-name">Datas Especiais</div>
+            <div class="mockup-card-price">R$ 17,90</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float float1">🌟 PDF instantâneo</div>
+      <div class="hero-float float2" style="animation-delay:.8s">👩‍🏫 Alinhado à BNCC</div>
+      <div class="hero-float float3" style="animation-delay:1.4s">🖨️ Imprima em casa</div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" aria-hidden="true">
+    <div class="trust-track" id="trustTrack">
+      <span class="trust-item"><span>✓</span> Download imediato</span>
+      <span class="trust-item"><span>✓</span> Pague uma vez, imprima sempre</span>
+      <span class="trust-item"><span>✓</span> Alinhado à BNCC</span>
+      <span class="trust-item"><span>✓</span> Para crianças de 3 a 10 anos</span>
+      <span class="trust-item"><span>✓</span> Aprovado por professoras</span>
+      <span class="trust-item"><span>✓</span> Alta qualidade de impressão (300 dpi)</span>
+      <span class="trust-item"><span>✓</span> Download imediato</span>
+      <span class="trust-item"><span>✓</span> Pague uma vez, imprima sempre</span>
+      <span class="trust-item"><span>✓</span> Alinhado à BNCC</span>
+      <span class="trust-item"><span>✓</span> Para crianças de 3 a 10 anos</span>
+      <span class="trust-item"><span>✓</span> Aprovado por professoras</span>
+      <span class="trust-item"><span>✓</span> Alta qualidade de impressão (300 dpi)</span>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="produtos">
+    <div class="products-header reveal">
+      <span class="section-label">Nossos Kits</span>
+      <h2 class="section-title">Atividades que as crianças amam</h2>
+      <p class="section-sub">Cada kit é cuidadosamente elaborado por educadores para desenvolver habilidades essenciais de forma divertida.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <div class="product-card reveal">
+        <div class="product-card-img pc-bg1">
+          <span>✏️</span>
+          <span class="product-badge badge-hot">Mais Vendido</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Kit Coordenação Motora Fina</h3>
+          <p class="product-desc">28 páginas com tracejados, labirintos, complete o desenho e atividades para desenvolver o controle motor.</p>
+          <div class="product-meta">
+            <span class="product-tag">3–6 anos</span>
+            <span class="product-tag">28 páginas</span>
+            <span class="product-tag">PDF A4</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">
+              <small>apenas</small>
+              R$ 19,90
+            </div>
+            <button class="btn-buy" onclick="alert('Substitua este link pelo seu link da Kiwify!')">Comprar →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" style="transition-delay:.1s">
+        <div class="product-card-img pc-bg2">
+          <span>🔍</span>
+          <span class="product-badge badge-new">Novo</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Kit Caça-Palavras Temático</h3>
+          <p class="product-desc">24 páginas com 10 temas diferentes: animais, frutas, escola, profissões e muito mais.</p>
+          <div class="product-meta">
+            <span class="product-tag">6–10 anos</span>
+            <span class="product-tag">24 páginas</span>
+            <span class="product-tag">10 temas</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">
+              <small>apenas</small>
+              R$ 17,90
+            </div>
+            <button class="btn-buy" onclick="alert('Substitua este link pelo seu link da Kiwify!')">Comprar →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" style="transition-delay:.2s">
+        <div class="product-card-img pc-bg3">
+          <span>🔤</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Kit Alfabetização Completo</h3>
+          <p class="product-desc">35 páginas com vogais, consoantes, tracejado de letras e atividades de escrita para iniciar na leitura.</p>
+          <div class="product-meta">
+            <span class="product-tag">4–6 anos</span>
+            <span class="product-tag">35 páginas</span>
+            <span class="product-tag">BNCC</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">
+              <small>apenas</small>
+              R$ 19,90
+            </div>
+            <button class="btn-buy" onclick="alert('Substitua este link pelo seu link da Kiwify!')">Comprar →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal" style="transition-delay:.3s">
+        <div class="product-card-img pc-bg4">
+          <span>🎉</span>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">Kit Datas Comemorativas</h3>
+          <p class="product-desc">Pacote especial com atividades para Dia das Mães, Festa Junina, Natal e Dia das Crianças.</p>
+          <div class="product-meta">
+            <span class="product-tag">3–8 anos</span>
+            <span class="product-tag">4 datas</span>
+            <span class="product-tag">Sazonal</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">
+              <small>apenas</small>
+              R$ 17,90
+            </div>
+            <button class="btn-buy" onclick="alert('Substitua este link pelo seu link da Kiwify!')">Comprar →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bundle -->
+    <div class="bundle-banner reveal">
+      <div class="bundle-text">
+        <p class="eyebrow">🔥 Oferta especial</p>
+        <h3>Kit Completo Xpanse Kids</h3>
+        <p>Todos os 8 kits + bônus exclusivos por um preço incrível. Economize mais de 50%.</p>
+      </div>
+      <div class="bundle-price">
+        <p class="bundle-old">de R$ 135,60</p>
+        <p class="bundle-new">R$ 67,00</p>
+        <a href="#" class="btn-bundle" onclick="alert('Substitua pelo seu link da Kiwify!')">Quero o Kit Completo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="como-funciona">
+    <div style="text-align:center" class="reveal">
+      <span class="section-label">Simples assim</span>
+      <h2 class="section-title">Como funciona?</h2>
+      <p class="section-sub" style="margin:0 auto">Em 4 passos simples você já tem as atividades nas mãos das crianças.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step reveal">
+        <div class="how-icon hi1">🛒</div>
+        <h3>Escolha o kit</h3>
+        <p>Navegue pelos nossos kits e escolha o que melhor combina com a faixa etária e as necessidades da criança.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.1s">
+        <div class="how-icon hi2">💳</div>
+        <h3>Realize o pagamento</h3>
+        <p>Pague com segurança via Pix, cartão de crédito ou boleto. Aceitamos todas as formas de pagamento.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.2s">
+        <div class="how-icon hi3">📥</div>
+        <h3>Baixe o PDF</h3>
+        <p>O arquivo chega no seu e-mail em segundos. Download imediato, sem espera, sem complicação.</p>
+      </div>
+      <div class="how-step reveal" style="transition-delay:.3s">
+        <div class="how-icon hi4">🖨️</div>
+        <h3>Imprima e divirta-se!</h3>
+        <p>Imprima em casa ou numa copiadora. Pronto! As crianças já podem começar a aprender brincando.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="beneficios">
+    <div class="benefits-layout">
+      <div class="reveal">
+        <span class="section-label">Por que a Xpanse Kids?</span>
+        <h2 class="section-title">Feito com carinho para quem mais importa</h2>
+        <ul class="benefits-list">
+          <li>
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Alinhado à BNCC</h4>
+              <p>Todo conteúdo segue as diretrizes da Base Nacional Curricular, facilitando o trabalho de professoras e reforço escolar em casa.</p>
+            </div>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Desenvolvido por educadores</h4>
+              <p>Cada atividade foi pensada para estimular habilidades cognitivas, motoras e criativas de acordo com a fase de desenvolvimento.</p>
+            </div>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Alta resolução para impressão</h4>
+              <p>Todos os arquivos em 300 dpi — nada de impressão borrada ou cortada. Resultado profissional em qualquer impressora.</p>
+            </div>
+          </li>
+          <li>
+            <div class="check-icon">✓</div>
+            <div>
+              <h4>Pague uma vez, use sempre</h4>
+              <p>Sem assinaturas. Comprou, é seu para sempre. Imprima quantas vezes quiser para quantas crianças precisar.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="benefits-visual reveal" style="transition-delay:.15s">
+        <div class="bv-inner">
+          <div class="bv-card bv1"><div class="bv-card-icon">🧠</div><div class="bv-card-label">Cognitivo</div></div>
+          <div class="bv-card bv2"><div class="bv-card-icon">✋</div><div class="bv-card-label">Motor</div></div>
+          <div class="bv-card bv3"><div class="bv-card-icon">🎨</div><div class="bv-card-label">Criativo</div></div>
+          <div class="bv-card bv4"><div class="bv-card-icon">📚</div><div class="bv-card-label">Alfabetização</div></div>
+        </div>
+        <div style="margin-top:20px; background:var(--white); border-radius:16px; padding:20px 18px; box-shadow:var(--shadow);">
+          <p style="font-family:'Baloo 2',cursive; font-weight:700; font-size:0.9rem; color:var(--ink); margin-bottom:10px;">📊 O que as mães dizem</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:3px;"><span>Qualidade do conteúdo</span><span style="font-weight:700; color:var(--ink);">98%</span></div>
+              <div style="background:#EEE; border-radius:4px; height:6px;"><div style="background:var(--coral); width:98%; height:6px; border-radius:4px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:3px;"><span>Engajamento das crianças</span><span style="font-weight:700; color:var(--ink);">96%</span></div>
+              <div style="background:#EEE; border-radius:4px; height:6px;"><div style="background:var(--sky); width:96%; height:6px; border-radius:4px;"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:3px;"><span>Indicariam para amigas</span><span style="font-weight:700; color:var(--ink);">100%</span></div>
+              <div style="background:#EEE; border-radius:4px; height:6px;"><div style="background:var(--mint-dark); width:100%; height:6px; border-radius:4px;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="depoimentos">
+    <div class="testimonials-header reveal">
+      <span class="section-label">Depoimentos</span>
+      <h2 class="section-title">O que as famílias estão dizendo</h2>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Minha filha de 4 anos adora! Ela pede para fazer as atividades todo dia antes de dormir. Qualidade incrível e preço justo. Já comprei 3 kits!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av1">A</div>
+          <div>
+            <div class="author-name">Ana Paula S.</div>
+            <div class="author-role">Mãe de uma menina de 4 anos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" style="transition-delay:.1s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Uso em sala de aula toda semana. Os alunos adoram o caça-palavras temático! Super alinhado ao que preciso trabalhar no 2º ano. Recomendo demais!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av2">M</div>
+          <div>
+            <div class="author-name">Professora Mariana L.</div>
+            <div class="author-role">Professora do 2º ano, SP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" style="transition-delay:.2s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Meu filho tem 6 anos e estava com dificuldade na coordenação motora. Com o kit, em 3 semanas a professora já notou a melhora. Que presente!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av3">C</div>
+          <div>
+            <div class="author-name">Carla R.</div>
+            <div class="author-role">Mãe de um menino de 6 anos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" style="transition-delay:.3s">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Trabalho com homeschooling e esses kits salvam meu planejamento semanal. O download é imediato e a qualidade de impressão é excelente!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar av4">F</div>
+          <div>
+            <div class="author-name">Fernanda O.</div>
+            <div class="author-role">Mãe homeschooler, MG</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-layout">
+      <div class="reveal">
+        <span class="section-label">Dúvidas?</span>
+        <h2 class="section-title">Perguntas frequentes</h2>
+        <p class="section-sub">Se não encontrar o que procura, entre em contato pelo Instagram.</p>
+        <a href="#produtos" class="btn-primary" style="margin-top:2rem; display:inline-flex;">Ver os kits →</a>
+      </div>
+      <div class="faq-list reveal" style="transition-delay:.1s">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Como recebo o produto após a compra?</h4>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer"><p>Imediatamente após a confirmação do pagamento, você recebe um e-mail com o link para baixar o PDF. O processo é automático e funciona 24 horas por dia.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Quantas vezes posso imprimir?</h4>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer"><p>Quantas vezes quiser! Não há limite de impressões. Você paga uma vez e pode imprimir para seus filhos, alunos, sobrinhos — para sempre.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Qual impressora preciso ter?</h4>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer"><p>Qualquer impressora doméstica funciona! Os arquivos são em A4 e estão otimizados para impressão em preto e branco ou colorido. Também pode imprimir em copiadora.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Os kits são adequados para qual faixa etária?</h4>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer"><p>Temos kits para crianças de 3 a 10 anos. Cada produto indica claramente a faixa etária recomendada. O Kit Completo abrange todas as idades.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Posso usar em sala de aula?</h4>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer"><p>Sim! Professoras podem usar os materiais com seus alunos. A licença permite uso pessoal e em sala de aula. Para uso comercial (revenda), entre em contato.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>E se eu não ficar satisfeita?</h4>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-answer"><p>Oferecemos garantia de 7 dias. Se por qualquer motivo não ficar satisfeita, basta entrar em contato e devolvemos 100% do seu dinheiro, sem perguntas.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="cta">
+    <div class="hero-bg-blob blob1"></div>
+    <div class="hero-bg-blob blob2"></div>
+    <div class="cta-inner reveal">
+      <div class="cta-badge">✨ Comece hoje mesmo</div>
+      <h2 class="section-title">Sua criança merece o melhor começo</h2>
+      <p class="section-sub">Junte-se a centenas de famílias que já transformaram o aprendizado em diversão. Download imediato após a compra.</p>
+      <div class="cta-actions">
+        <a href="#produtos" class="btn-cta-primary">Ver todos os kits →</a>
+        <a href="#como-funciona" class="btn-cta-secondary">Como funciona?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">Xpanse<span>Kids</span></a>
+      <div class="footer-links">
+        <a href="#produtos">Produtos</a>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:contato@xpansekids.com.br">Contato</a>
+      </div>
+      <p class="footer-copy">© 2025 Xpanse Kids. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+
+    // FAQ accordion
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Navbar shadow on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow =
+        window.scrollY > 20 ? '0 4px 24px rgba(26,26,46,0.10)' : 'none';
+    });
+  </script>
+</body>
+</html>
