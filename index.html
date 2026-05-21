@@ -628,11 +628,17 @@
 
     /* Coming soon overlay */
     .coming-soon-overlay {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: rgba(26,26,46,0.55);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      z-index: 6; gap: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 6;
+      gap: 6px;
+
+      pointer-events: none;
     }
     .coming-soon-badge {
       background: var(--sun); color: var(--ink);
