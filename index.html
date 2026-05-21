@@ -306,6 +306,7 @@
       background: var(--gray-light); color: var(--ink-soft);
       font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
     }
+    .product-footer { position: relative; z-index: 20; }
     .product-footer { display: flex; align-items: center; justify-content: space-between; }
     .product-price { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; color: var(--ink); }
     .product-price small { font-size: 0.75rem; color: var(--text-muted); font-family: 'Nunito', sans-serif; font-weight: 600; display: block; line-height: 1; }
@@ -325,7 +326,11 @@
 
       display: inline-block;
       text-decoration: none;
+
+      position: relative;
+      z-index: 20;
     }
+
     .btn-buy:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,107,0.5); }
 
     /* Bundle */
