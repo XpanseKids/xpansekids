@@ -266,12 +266,15 @@
 
     .product-card {
       border-radius: var(--radius);
+      overflow: hidden;
       background: var(--white);
       border: 2px solid transparent;
       box-shadow: var(--shadow);
       transition: transform .25s, box-shadow .25s, border-color .25s;
       position: relative;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
     .product-card:hover {
       transform: translateY(-6px);
@@ -282,6 +285,7 @@
     .product-card-img {
       height: 180px; display: flex; align-items: center; justify-content: center;
       font-size: 4rem; position: relative; overflow: hidden;
+      flex-shrink: 0;
     }
     .pc-bg1 { background: linear-gradient(135deg, #FFF3CD 0%, #FFE066 100%); }
     .pc-bg2 { background: linear-gradient(135deg, #D0EBFF 0%, #74C0FC 100%); }
@@ -298,10 +302,10 @@
     .badge-new { background: var(--mint-dark); }
     .badge-hot { background: var(--coral); }
 
-    .product-body { padding: 24px; }
+    .product-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
     .product-name { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
     .product-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
-    .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; flex: 1; align-content: flex-start; }
     .product-tag {
       background: var(--gray-light); color: var(--ink-soft);
       font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
@@ -584,7 +588,7 @@
       overflow: hidden;
       position: relative;
       background: #f0f0f0;
-      border-radius: var(--radius) var(--radius) 0 0;
+      flex-shrink: 0;
     }
 
     .carousel {
@@ -1419,7 +1423,7 @@
         <a href="#faq">FAQ</a>
         <a href="mailto:contato@xpansekids.com.br">Contato</a>
       </div>
-      <p class="footer-copy">© 2026 Xpanse Kids. Todos os direitos reservados.</p>
+      <p class="footer-copy">© 2025 Xpanse Kids. Todos os direitos reservados.</p>
     </div>
   </footer>
 
