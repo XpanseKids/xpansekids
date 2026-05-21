@@ -562,6 +562,91 @@
       }
       section { padding: 70px 5%; }
     }
+
+    /* ── PRODUCT IMAGE CAROUSEL ── */
+    .product-card-img {
+      height: 220px;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      background: #f0f0f0;
+    }
+
+    .carousel {
+      width: 100%; height: 100%;
+      position: relative; overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .carousel-slide {
+      min-width: 100%; height: 100%;
+      flex-shrink: 0;
+    }
+
+    .carousel-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none; border-radius: 50%;
+      width: 32px; height: 32px;
+      font-size: 0.9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 5; opacity: 0;
+      transition: opacity 0.2s;
+      color: var(--ink);
+    }
+    .product-card:hover .carousel-btn { opacity: 1; }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+    .carousel-btn:hover { background: white; }
+
+    .carousel-dots {
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 5px; z-index: 5;
+    }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer; border: none; padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active {
+      background: white;
+      transform: scale(1.3);
+    }
+
+    /* Coming soon overlay */
+    .coming-soon-overlay {
+      position: absolute; inset: 0;
+      background: rgba(26,26,46,0.55);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 6; gap: 6px;
+    }
+    .coming-soon-badge {
+      background: var(--sun); color: var(--ink);
+      font-family: 'Baloo 2', cursive; font-weight: 800;
+      font-size: 0.85rem; padding: 6px 18px; border-radius: 50px;
+    }
+
+    /* Product category label */
+    .product-category {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 4px;
+    }
   </style>
 </head>
 <body>
@@ -673,12 +758,29 @@
 
     <div class="products-grid">
 
+      <!-- Projeto 1 - Coordenação Motora -->
       <div class="product-card reveal">
-        <div class="product-card-img pc-bg1">
-          <span>✏️</span>
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-p1">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#FFF3CD';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%201%20-%20Coordena%C3%A7%C3%A3o%20Motora/9.png" alt="Preview 9" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('p1',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('p1',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-p1"></div>
+          </div>
           <span class="product-badge badge-hot">Mais Vendido</span>
         </div>
         <div class="product-body">
+          <div class="product-category">🎓 Projeto Educativo</div>
           <h3 class="product-name">Kit Coordenação Motora Fina</h3>
           <p class="product-desc">28 páginas com tracejados, labirintos, complete o desenho e atividades para desenvolver o controle motor.</p>
           <div class="product-meta">
@@ -687,23 +789,32 @@
             <span class="product-tag">PDF A4</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 19,90
-            </div>
-            <a href="https://pay.hotmart.com/R105849963Y" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 19,90</div>
+            <a href="https://pay.hotmart.com/R105849963Y" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.1s">
-        <div class="product-card-img pc-bg2">
-          <span>🔍</span>
+      <!-- Projeto 2 - Caça Palavras -->
+      <div class="product-card reveal" style="transition-delay:.05s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-p2">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%202%20-%20Ca%C3%A7a%20Palavras/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#D0EBFF';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%202%20-%20Ca%C3%A7a%20Palavras/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%202%20-%20Ca%C3%A7a%20Palavras/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%202%20-%20Ca%C3%A7a%20Palavras/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%202%20-%20Ca%C3%A7a%20Palavras/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%202%20-%20Ca%C3%A7a%20Palavras/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('p2',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('p2',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-p2"></div>
+          </div>
           <span class="product-badge badge-new">Novo</span>
         </div>
         <div class="product-body">
+          <div class="product-category">🎓 Projeto Educativo</div>
           <h3 class="product-name">Kit Caça-Palavras Temático</h3>
           <p class="product-desc">24 páginas com 10 temas diferentes: animais, frutas, escola, profissões e muito mais.</p>
           <div class="product-meta">
@@ -712,47 +823,72 @@
             <span class="product-tag">10 temas</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 18,90
-            </div>
-            <a href="https://pay.hotmart.com/N105865414F" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 18,90</div>
+            <a href="https://pay.hotmart.com/N105865414F" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.2s">
-        <div class="product-card-img pc-bg3">
-          <span>🔤</span>
+      <!-- Projeto 3 - Kit Alfabetização -->
+      <div class="product-card reveal" style="transition-delay:.1s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-p3">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#D3F9D8';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/9.png" alt="Preview 9" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%203%20-%20Kit%20Alfabetiza%C3%A7%C3%A3o/10.png" alt="Preview 10" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('p3',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('p3',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-p3"></div>
+          </div>
         </div>
         <div class="product-body">
+          <div class="product-category">🎓 Projeto Educativo</div>
           <h3 class="product-name">Kit Alfabetização Completo</h3>
           <p class="product-desc">35 páginas com vogais, consoantes, tracejado de letras e atividades de escrita para iniciar na leitura.</p>
           <div class="product-meta">
             <span class="product-tag">4–6 anos</span>
-            <span class="product-tag"> + de 40 páginas</span>
+            <span class="product-tag">+40 páginas</span>
             <span class="product-tag">BNCC</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 21,90
-            </div>
-            <a href="https://pay.hotmart.com/X105873388F" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 21,90</div>
+            <a href="https://pay.hotmart.com/X105873388F" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.3s">
-        <div class="product-card-img pc-bg4">
-          <span>🧸</span>
+      <!-- Kit 1 - Personagens -->
+      <div class="product-card reveal" style="transition-delay:.15s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-k1">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#F8D7DA';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%201%20-%20Personagens/9.png" alt="Preview 9" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('k1',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('k1',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-k1"></div>
+          </div>
         </div>
         <div class="product-body">
-          <h3 class="product-name">Pack 1 — Personagens</h3>
+          <div class="product-category">🎨 Kit de Colorir</div>
+          <h3 class="product-name">Kit 1 — Personagens</h3>
           <p class="product-desc">Desenhos de personagens variados para colorir e criar histórias. Perfeito para estimular a imaginação.</p>
           <div class="product-meta">
             <span class="product-tag">3–10 anos</span>
@@ -760,48 +896,70 @@
             <span class="product-tag">PDF A4</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 9,90
-            </div>
-            <a href="https://pay.hotmart.com/B105900079A" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 9,90</div>
+            <a href="https://pay.hotmart.com/B105900079A" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.4s">
-        <div class="product-card-img pc-bg2">
-          <span>🚗</span>
+      <!-- Kit 2 - Carros, Animais, Dinossauros -->
+      <div class="product-card reveal" style="transition-delay:.2s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-k2">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#D0EBFF';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%202%20-%20Carros%2C%20Animais%2C%20Dinossauros%20e%20mais/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('k2',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('k2',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-k2"></div>
+          </div>
           <span class="product-badge badge-hot">+400 desenhos</span>
         </div>
         <div class="product-body">
-          <h3 class="product-name">Kit 2 — Carros, Dinossauros, Veículo e + </h3>
-          <p class="product-desc">Coleção com carros, dinossauros e muito mais para os pequenos que adoram aventura e ação.</p>
+          <div class="product-category">🎨 Kit de Colorir</div>
+          <h3 class="product-name">Kit 2 — Carros, Animais, Dinossauros e +</h3>
+          <p class="product-desc">Coleção com carros, dinossauros, animais e muito mais para os pequenos que adoram aventura e ação.</p>
           <div class="product-meta">
             <span class="product-tag">3–10 anos</span>
             <span class="product-tag">Temático</span>
             <span class="product-tag">PDF A4</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 24,90
-            </div>
-            <a href="https://pay.hotmart.com/V105900110J" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 24,90</div>
+            <a href="https://pay.hotmart.com/V105900110J" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.5s">
-        <div class="product-card-img pc-bg3">
-          <span>🌸</span>
+      <!-- Kit 3 - Flores, Arvores, Pessoas -->
+      <div class="product-card reveal" style="transition-delay:.25s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-k3">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#D3F9D8';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%203%20-%20Flores%2C%20Arvores%2C%20Pessoas%20e%20mais/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('k3',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('k3',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-k3"></div>
+          </div>
           <span class="product-badge badge-hot">+400 desenhos</span>
         </div>
         <div class="product-body">
+          <div class="product-category">🎨 Kit de Colorir</div>
           <h3 class="product-name">Kit 3 — Flores, Árvores, Pessoas e +</h3>
           <p class="product-desc">Desenhos da natureza e do cotidiano: flores, árvores, pessoas e muito mais para colorir.</p>
           <div class="product-meta">
@@ -810,23 +968,33 @@
             <span class="product-tag">PDF A4</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 24,90
-            </div>
-            <a href="https://pay.hotmart.com/Q105900157X" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 24,90</div>
+            <a href="https://pay.hotmart.com/Q105900157X" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.6s">
-        <div class="product-card-img pc-bg1">
-          <span>🎨</span>
+      <!-- Kit 4 - Conteúdo Misto -->
+      <div class="product-card reveal" style="transition-delay:.3s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-k4">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#FFF3CD';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%204%20%E2%80%93%20Conte%C3%BAdo%20Misto%20(%2B100%20Desenhos%20Variados)/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('k4',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('k4',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-k4"></div>
+          </div>
           <span class="product-badge badge-hot">+100 desenhos</span>
         </div>
         <div class="product-body">
+          <div class="product-category">🎨 Kit de Colorir</div>
           <h3 class="product-name">Kit 4 — Conteúdo Misto</h3>
           <p class="product-desc">Mais de 100 desenhos variados em um único pack. Diversidade garantida para semanas de atividades!</p>
           <div class="product-meta">
@@ -835,24 +1003,37 @@
             <span class="product-tag">PDF A4</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 14,90
-            </div>
-            <a href="https://pay.hotmart.com/F105900176M" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <div class="product-price"><small>apenas</small>R$ 14,90</div>
+            <a href="https://pay.hotmart.com/F105900176M" target="_blank"><button class="btn-buy">Comprar →</button></a>
           </div>
         </div>
       </div>
 
-      <div class="product-card reveal" style="transition-delay:.7s">
-        <div class="product-card-img pc-bg5">
-          <span>🖌️</span>
+      <!-- Kit 5 - Mega Conteúdo Misto -->
+      <div class="product-card reveal" style="transition-delay:.35s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-k5">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#E5DBFF';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/9.png" alt="Preview 9" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Kit%205%20%E2%80%93%20Mega%20Conte%C3%BAdo%20Misto%20(%2B500%20Desenhos%20Variados)/10.png" alt="Preview 10" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('k5',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('k5',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-k5"></div>
+          </div>
           <span class="product-badge badge-new">+500 desenhos</span>
         </div>
         <div class="product-body">
-          <h3 class="product-name">Kit 5 — Conteúdo Misto</h3>
+          <div class="product-category">🎨 Kit de Colorir</div>
+          <h3 class="product-name">Kit 5 — Mega Conteúdo Misto</h3>
           <p class="product-desc">O maior pack! Mais de 500 desenhos variados para meses e meses de diversão e criatividade.</p>
           <div class="product-meta">
             <span class="product-tag">3–10 anos</span>
@@ -860,13 +1041,125 @@
             <span class="product-tag">PDF A4</span>
           </div>
           <div class="product-footer">
-            <div class="product-price">
-              <small>apenas</small>
-              R$ 29,90
+            <div class="product-price"><small>apenas</small>R$ 29,90</div>
+            <a href="https://pay.hotmart.com/M105900204S" target="_blank"><button class="btn-buy">Comprar →</button></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 4 - Ebook Alfabeto (Em breve) -->
+      <div class="product-card reveal" style="transition-delay:.4s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-p4">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#FFF3CD';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Projeto%204%20-%20Desenhos%20ebook%20alfabeto/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
             </div>
-            <a href="https://pay.hotmart.com/M105900204S" target="_blank">
-  <button class="btn-buy">Comprar →</button>
-</a>
+            <button class="carousel-btn prev" onclick="moveCarousel('p4',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('p4',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-p4"></div>
+          </div>
+          <div class="coming-soon-overlay">
+            <span class="coming-soon-badge">🕐 Em breve</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-category">📖 Livro Educativo</div>
+          <h3 class="product-name">Livro de Colorir / Alfabeto Infantil</h3>
+          <p class="product-desc">Livros educativos e divertidos para crianças aprenderem o alfabeto enquanto pintam, exploram animais e desenvolvem a criatividade de forma leve e encantadora 🎨🦁</p>
+          <div class="product-meta">
+            <span class="product-tag">3–8 anos</span>
+            <span class="product-tag">Alfabeto</span>
+            <span class="product-tag">PDF A4</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price" style="color:var(--text-muted); font-size:1rem; font-family:'Nunito',sans-serif; font-weight:700;">Em breve...</div>
+            <button class="btn-buy" style="opacity:0.5; cursor:not-allowed;" disabled>Em breve</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sequência Didática Bimestre 1 (Em breve) -->
+      <div class="product-card reveal" style="transition-delay:.45s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-sb1">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#D0EBFF';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/8.png" alt="Preview 8" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/9.png" alt="Preview 9" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/10.png" alt="Preview 10" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/11.png" alt="Preview 11" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/12.png" alt="Preview 12" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Bimestre%201/13.png" alt="Preview 13" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('sb1',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('sb1',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-sb1"></div>
+          </div>
+          <div class="coming-soon-overlay">
+            <span class="coming-soon-badge">🕐 Em breve</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-category">📚 Para Professores</div>
+          <h3 class="product-name">Sequência Didática — Bimestre 1</h3>
+          <p class="product-desc">Sequências didáticas completas e alinhadas à BNCC, com aulas prontas, atividades e planejamento prático para facilitar a rotina do professor em sala de aula 📚✏️</p>
+          <div class="product-meta">
+            <span class="product-tag">Professores</span>
+            <span class="product-tag">BNCC</span>
+            <span class="product-tag">PDF A4</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price" style="color:var(--text-muted); font-size:1rem; font-family:'Nunito',sans-serif; font-weight:700;">Em breve...</div>
+            <button class="btn-buy" style="opacity:0.5; cursor:not-allowed;" disabled>Em breve</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sequência Didática Trimestre 1 (Em breve) -->
+      <div class="product-card reveal" style="transition-delay:.5s">
+        <div class="product-card-img">
+          <div class="carousel" id="carousel-st1">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/1.png" alt="Preview 1" loading="lazy" onerror="this.parentElement.style.background='#D3F9D8';this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/2.png" alt="Preview 2" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/3.png" alt="Preview 3" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/4.png" alt="Preview 4" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/5.png" alt="Preview 5" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/6.png" alt="Preview 6" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="carousel-slide"><img src="https://raw.githubusercontent.com/XpanseKids/conteudo/main/Sequ%C3%AAncia%20Did%C3%A1tica%20Trimestre%201/7.png" alt="Preview 7" loading="lazy" onerror="this.style.display='none'"></div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel('st1',-1)">&#8249;</button>
+            <button class="carousel-btn next" onclick="moveCarousel('st1',1)">&#8250;</button>
+            <div class="carousel-dots" id="dots-st1"></div>
+          </div>
+          <div class="coming-soon-overlay">
+            <span class="coming-soon-badge">🕐 Em breve</span>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-category">📚 Para Professores</div>
+          <h3 class="product-name">Sequência Didática — Trimestre 1</h3>
+          <p class="product-desc">Sequências didáticas completas e alinhadas à BNCC, com aulas prontas, atividades e planejamento prático para facilitar a rotina do professor em sala de aula 📚✏️</p>
+          <div class="product-meta">
+            <span class="product-tag">Professores</span>
+            <span class="product-tag">BNCC</span>
+            <span class="product-tag">PDF A4</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price" style="color:var(--text-muted); font-size:1rem; font-family:'Nunito',sans-serif; font-weight:700;">Em breve...</div>
+            <button class="btn-buy" style="opacity:0.5; cursor:not-allowed;" disabled>Em breve</button>
           </div>
         </div>
       </div>
@@ -1164,6 +1457,62 @@
     window.addEventListener('scroll', () => {
       document.querySelector('nav').style.boxShadow =
         window.scrollY > 20 ? '0 4px 24px rgba(26,26,46,0.10)' : 'none';
+    });
+
+    // ── CAROUSEL ──
+    const carouselState = {};
+
+    function initCarousel(id) {
+      const carousel = document.getElementById('carousel-' + id);
+      if (!carousel) return;
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const dotsContainer = document.getElementById('dots-' + id);
+      carouselState[id] = { current: 0, total: slides.length };
+
+      // Build dots
+      dotsContainer.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(id, i);
+        dotsContainer.appendChild(dot);
+      });
+
+      updateCarousel(id);
+    }
+
+    function updateCarousel(id) {
+      const carousel = document.getElementById('carousel-' + id);
+      if (!carousel) return;
+      const track = carousel.querySelector('.carousel-track');
+      const dots = document.querySelectorAll('#dots-' + id + ' .carousel-dot');
+      const { current } = carouselState[id];
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function moveCarousel(id, dir) {
+      const state = carouselState[id];
+      if (!state) return;
+      state.current = (state.current + dir + state.total) % state.total;
+      updateCarousel(id);
+    }
+
+    function goToSlide(id, index) {
+      const state = carouselState[id];
+      if (!state) return;
+      state.current = index;
+      updateCarousel(id);
+    }
+
+    // Auto-advance carousels
+    const carouselIds = ['p1','p2','p3','k1','k2','k3','k4','k5','p4','sb1','st1'];
+    carouselIds.forEach(id => {
+      initCarousel(id);
+      setInterval(() => {
+        const card = document.getElementById('carousel-' + id)?.closest('.product-card');
+        if (card && !card.matches(':hover')) moveCarousel(id, 1);
+      }, 3500 + Math.random() * 1000);
     });
   </script>
 </body>
