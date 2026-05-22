@@ -648,6 +648,20 @@
       text-transform: uppercase; color: var(--text-muted);
       margin-bottom: 4px;
     }
+
+    /* ── ADBLOCKER BUTTON BLOCK ── */
+    .btn-buy-blocked {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #f0f0f0; color: #999;
+      border: 2px dashed #ccc; border-radius: 50px; padding: 10px 16px;
+      font-family: 'Baloo 2', cursive; font-weight: 700; font-size: 0.82rem;
+      cursor: not-allowed; text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-buy-blocked:hover {
+      background: #ffe5e5; border-color: var(--coral); color: var(--coral);
+    }
+    .btn-buy-blocked span { font-size: 0.95rem; }
   </style>
   <style>
     #cookie-banner {
@@ -1602,28 +1616,45 @@
       }, 3500 + Math.random() * 1000);
     });
 
-    // ── COOKIE BANNER ──
-    function closeCookieBanner(accepted) {
-      document.getElementById('cookie-banner').classList.remove('show');
-      localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'declined');
-    }
-    window.addEventListener('load', function() {
-      // Cookie banner
-      if (!localStorage.getItem('cookieConsent')) {
-        setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1500);
-      }
-      // Adblocker detection
+// ── ADBLOCKER BUTTON SWAP ──
+    function checkAdBlocker() {
       var testAd = document.createElement('div');
       testAd.innerHTML = '&nbsp;';
       testAd.className = 'adsbox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads ad-text adSense adBlock';
       testAd.style.cssText = 'width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;';
       document.body.appendChild(testAd);
+
       setTimeout(function() {
-        if (testAd.offsetHeight === 0 || testAd.offsetWidth === 0 || !testAd.clientHeight) {
-          document.getElementById('adblocker-banner').classList.add('show');
-        }
+        var hasAdBlocker = testAd.offsetHeight === 0 || testAd.offsetWidth === 0 || !testAd.clientHeight;
         document.body.removeChild(testAd);
-      }, 500);
+
+        if (hasAdBlocker) {
+          // Show adblocker banner
+          document.getElementById('adblocker-banner').classList.add('show');
+
+          // Swap all buy buttons with blocked message
+          document.querySelectorAll('a.btn-buy').forEach(function(btn) {
+            var blocked = document.createElement('span');
+            blocked.className = 'btn-buy-blocked';
+            blocked.title = 'Desative o bloqueador de anúncios para comprar';
+            blocked.innerHTML = '<span>🔒</span> Desative o bloqueador';
+            blocked.onclick = function() {
+              document.getElementById('adblocker-banner').classList.add('show');
+              document.getElementById('adblocker-banner').scrollIntoView({behavior:'smooth'});
+            };
+            btn.parentNode.replaceChild(blocked, btn);
+          });
+        }
+      }, 600);
+    }
+
+    window.addEventListener('load', function() {
+      // Cookie banner
+      if (!localStorage.getItem('cookieConsent')) {
+        setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1500);
+      }
+      // Check adblocker
+      checkAdBlocker();
     });
   </script>
 </body>
